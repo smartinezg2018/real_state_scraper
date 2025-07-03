@@ -6,10 +6,10 @@
 from scrapy import signals
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
+from itemadapter import is_item, ItemAdapter
 
 
-class CarsSpiderMiddleware:
+class ScraperSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -43,17 +43,20 @@ class CarsSpiderMiddleware:
         # Should return either None or an iterable of Request or item objects.
         pass
 
-    async def process_start(self, start):
-        # Called with an async iterator over the spider start() method or the
-        # maching method of an earlier spider middleware.
-        async for item_or_request in start:
-            yield item_or_request
+    def process_start_requests(self, start_requests, spider):
+        # Called with the start requests of the spider, and works
+        # similarly to the process_spider_output() method, except
+        # that it doesn’t have a response associated.
+
+        # Must return only requests (not items).
+        for r in start_requests:
+            yield r
 
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)
 
 
-class CarsDownloaderMiddleware:
+class ScraperDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
