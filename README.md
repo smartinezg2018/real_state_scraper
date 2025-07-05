@@ -1,4 +1,4 @@
-# medellin realstate scraper
+# Medellin "realstate" spyder
 
 Web scraper diseñado para recolectar información del mercado inmobiliario en el área metropolitana de Medellín. Su propósito es facilitar investigaciones, análisis exploratorios de datos y el desarrollo de modelos de machine learning e inteligencia artificial aplicados al sector vivienda, con fines exclusivamente académicos y no comerciales.
 
